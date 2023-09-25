@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import RecipeFunction from './RecipeFunction';
 import Accordeon from './Accordeon';
+import FavoriteButton from './favoris/components/favoriteButton/FavoriteButton';
 
 const Myrecipefunction = new RecipeFunction();
 
@@ -24,7 +25,7 @@ const Recipe = () => {
 
   return (
     <Container fluid>
-       <Link className='backlink text-light' to='/'>&lsaquo; Retour aux Catégories</Link>
+       <Link className='backlink text-light' to='/'>&lsaquo; Retour aux Catégories</Link> | <Link className='backlink text-light' to='/listfavoritesrecipe'>Voir les recettes favoris &hearts;</Link>
           {data && data.meals.map(info =>
             <Card className='m-4' key={info.idMeal}>
             <div className='row'>
@@ -33,6 +34,7 @@ const Recipe = () => {
               </div>
               <div className='col-md-8'>
                 <h1 className='m-3 text-black'>{info.strMeal}</h1>
+                <FavoriteButton meal={info} />
                 <Card.Text>{info.strCategory}</Card.Text>
                 <Accordeon info={info}></Accordeon>
               </div>
